@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unit Converter</title>
+    <style>
+body {
+  font-family: Arial;
+  padding: 30px;
+}
+input, select, button {
+  padding: 8px;
+  margin: 5px 0;
+}
+</style>
+</head>
+<body>
+
+<h2>Unit Converter</h2>
+
+<form method="POST">
+
+  <input name="value" placeholder="Enter value"><br><br>
+
+  <!-- Category -->
+  <select id="category" onchange="updateUnits()">
+    <option value="length">Length</option>
+    <option value="weight">Weight</option>
+    <option value="temperature">Temperature</option>
+  </select><br><br>
+
+  <!-- From -->
+  <select id="from_unit" name="from_unit"></select><br><br>
+
+  <!-- To -->
+  <select id="to_unit" name="to_unit"></select><br><br>
+
+  <button type="submit">Convert</button>
+
+</form>
+
+{% if result %}
+  <h3>{{ result }}</h3>
+{% endif %}
+
+<script>
+const units = {
+  length: ["mm","cm","m","km","in","ft","yd","mi"],
+  weight: ["mg","g","kg","oz","lb"],
+  temperature: ["C","F","K"]
+};
+
+function updateUnits() {
+  const category = document.getElementById("category").value;
+
+  const from = document.getElementById("from_unit");
+  const to = document.getElementById("to_unit");
+
+  // clear old options
+  from.innerHTML = "";
+  to.innerHTML = "";
+
+  // add new options
+  units[category].forEach(unit => {
+    from.add(new Option(unit, unit));
+    to.add(new Option(unit, unit));
+  });
+}
+
+// initialize on load
+window.onload = updateUnits;
+</script>
+
+</body>
+</html>
