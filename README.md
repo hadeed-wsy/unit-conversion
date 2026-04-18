@@ -1,7 +1,6 @@
 Unit Converter Web App
 
 A simple web-based unit converter built using Flask.
-Supports conversion across Length, Weight, and Temperature with a dynamic UI.
 
 Features
 Convert between multiple units:
